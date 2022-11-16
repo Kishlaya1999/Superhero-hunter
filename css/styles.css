@@ -91,7 +91,7 @@ body {
 
 /*---------------------------------------------------- Search Bar and Results---------------------------------------- */
 .searchBar-items {
-     width: 40%;
+     min-width: 40%;
 }
 
 #search-bar {
@@ -126,6 +126,7 @@ input::placeholder {
 }
 
 .search-results {
+     min-width: 435px;
      list-style: none;
      z-index: 2;
      backdrop-filter: blur(4px);
