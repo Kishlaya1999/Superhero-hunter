@@ -1,0 +1,203 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+body {
+     background-color: rgb(198, 198, 198);
+     font-family: 'Kanit', sans-serif;
+     align-items: center;
+     height: 100vh;
+     width: 100vw;
+}
+
+.flex-row {
+     display: flex;
+     flex-direction: row;
+}
+
+.flex-col {
+     display: flex;
+     flex-direction: column;
+}
+
+/*--------------------------------------------------------- Navbar ------------------------------------------------- */
+
+/* Left Side */
+.navbar {
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     background-color: aliceblue;
+     font-weight: 600;
+     letter-spacing: 2px;
+     text-shadow: 0px 0px 5px #6e6e6e;
+     font-size: 30px;
+     padding: 0 20px;
+}
+
+.navbar-brand {
+     align-items: center;
+     gap: 10px;
+}
+
+/* Right Side */
+.logo {
+     width: 3%;
+     min-width: 45px;
+}
+
+.favAndTheme-btn {
+     align-items: center;
+     gap: 10px;
+}
+
+.btn {
+     border: none;
+     outline: none;
+     padding: 10px;
+     background-color: black;
+     color: white;
+     height: 40px;
+     cursor: pointer;
+     font-size: 16px;
+}
+
+.theme-btn {
+     width: 40px;
+}
+
+.theme-btn i {
+     font-size: 20px;
+}
+
+.fav-btn {
+     font-size: 16px;
+     width: 140px;
+}
+
+.fav-icon {
+     color: red;
+}
+
+.bg-right-side-img {
+     position: fixed;
+     right: 0;
+     bottom: 0;
+     height: 90%;
+     width: auto;
+     filter: blur(2px);
+}
+
+/*---------------------------------------------------- Search Bar and Results---------------------------------------- */
+.searchBar-items {
+     width: 40%;
+}
+
+#search-bar {
+     background: rgba(56, 56, 56, 0.8);
+     color: white;
+     min-width: 435px;
+     height: 50px;
+     font-size: 20px;
+     border: none;
+     border-radius: 5px 5px 0 0;
+     outline: none;
+     padding: 10px;
+     text-align: center;
+     letter-spacing: 2px;
+     margin-top: 50px;
+     z-index: 1;
+}
+
+input::placeholder {
+     color: rgba(255, 255, 255, 0.856);
+     font-size: 20px;
+     text-align: center;
+}
+
+.img-info {
+     gap: 10px;
+}
+
+.img-info img {
+     width: 65px;
+     border: 1px solid black;
+}
+
+.search-results {
+     list-style: none;
+     z-index: 2;
+     backdrop-filter: blur(4px);
+}
+
+.search-results li {
+     background: rgba(56, 56, 56, 0.6);
+     height: 100px;
+     color: white;
+     width: 100%;
+}
+
+.single-search-result {
+     padding: 0 5px;
+     justify-content: space-between;
+     align-items: center;
+     gap: 10px;
+     border: 1px solid black;
+     width: inherit;
+}
+
+.hero-info{
+     /* height: 100%; */
+     /* text-overflow: ellipsis; */
+     display: flex;
+     align-items: center;
+}
+
+.hero-name{
+     font-size: 26px;
+}
+
+.buttons {
+     gap: 5px;
+     padding: 0 10px;
+}
+
+/*------------------------------------------------------ Background Image ------------------------------------------- */
+.bg-img {
+     width: 70%;
+     min-width: 600px;
+     height: auto;
+     /* filter: blur(1px); */
+
+     position: fixed;
+     bottom: -30px;
+     left: 0;
+     right: 0;
+     margin: auto;
+}
+
+
+@media screen and (max-width: 576px) {
+     .navbar {
+          flex-direction: column;
+          gap: 10px;
+          padding: 10px 0;
+          /* height: 30%; */
+     }
+
+     .navbar-brand {
+          display: flex;
+          flex-direction: column;
+
+     }
+
+     .navbar-brand span {
+          margin-top: -35px;
+     }
+
+     .logo {
+          width: 25%;
+          min-width: 45px;
+     }
+}
