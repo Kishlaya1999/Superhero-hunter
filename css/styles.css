@@ -3,6 +3,7 @@
      padding: 0;
      box-sizing: border-box;
 }
+
 body {
      background-color: rgb(198, 198, 198);
      font-family: 'Kanit', sans-serif;
@@ -25,6 +26,7 @@ body {
 
 /* Left Side */
 .navbar {
+     /* position: fixed; */
      justify-content: space-between;
      align-items: center;
      width: 100%;
@@ -125,18 +127,32 @@ input::placeholder {
      border: 1px solid black;
 }
 
-.search-results {
+#search-results {
      min-width: 435px;
+     /* height: 500px; */
      list-style: none;
      z-index: 2;
      backdrop-filter: blur(4px);
+     /* overflow-y: scroll; */
 }
 
-.search-results li {
+#search-results li {
      background: rgba(56, 56, 56, 0.6);
      height: 100px;
      color: white;
      width: 100%;
+}
+
+#search-results li .hero-name{
+     transition: all 0.2s ease;
+     cursor: pointer;
+
+}
+
+#search-results li:hover .hero-name{
+     color: red;
+     /* background-color: ; */
+     /* background: rgba(56, 56, 56, 0.8); */
 }
 
 .single-search-result {
@@ -148,14 +164,19 @@ input::placeholder {
      width: inherit;
 }
 
-.hero-info{
+.character-info{
+     text-decoration: none;
+     color: white;
+}
+
+.hero-info {
      /* height: 100%; */
      /* text-overflow: ellipsis; */
      display: flex;
      align-items: center;
 }
 
-.hero-name{
+.hero-name {
      font-size: 26px;
 }
 

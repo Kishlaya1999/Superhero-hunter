@@ -21,7 +21,7 @@
      <link rel="stylesheet" href="./css/styles.css">
 
      <!-- Crypto JS -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
           integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -47,66 +47,29 @@
      <!-- Search Bar and Search Results -->
      <div class="flex-col searchBar-items">
           <input id="search-bar" type="text" autocomplete="off" placeholder="Search for Superheros">
-          <ul class="flex-col search-results">
-               <li class="flex-row single-search-result">
+          <ul class="flex-col" id="search-results">
+               <!-- <li class="flex-row single-search-result">
                     <div class="flex-row img-info">
-                         <img src="./images/portrait_medium.jpg" alt="">
+                         <img src="${hero.thumbnail.path+'/portrait_medium.' + hero.thumbnail.extension}" alt="">
                          <div class="hero-info">
-                              <span class="hero-name">Name</span>
+                              <a class="character-info" href="./more-info.html">
+                                   <span class="hero-name">${hero.name}</span>
+                              </a>
                          </div>
                     </div>
                     <div class="flex-col buttons">
                          <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                         <button class="btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites</button>
+                         <button class="btn add-to-fav-btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to
+                              Favourites</button>
                     </div>
-               </li>
-               <li class="flex-row single-search-result">
-                    <div class="flex-row img-info">
-                         <img src="./images/portrait_medium.jpg" alt="">
-                         <div class="hero-info">
-                              <span class="hero-name">Name</span>
-                         </div>
-                    </div>
-                    <div class="flex-col buttons">
-                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                         <button class="btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites</button>
-                    </div>
-               </li>
-               <li class="flex-row single-search-result">
-                    <div class="flex-row img-info">
-                         <img src="./images/portrait_medium.jpg" alt="">
-                         <div class="hero-info">
-                              <span class="hero-name">Name</span>
-                         </div>
-                    </div>
-                    <div class="flex-col buttons">
-                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                         <button class="btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites</button>
-                    </div>
-               </li>
-               <li class="flex-row single-search-result">
-                    <div class="flex-row img-info">
-                         <img src="./images/portrait_medium.jpg" alt="">
-                         <div class="hero-info">
-                              <span class="hero-name">Name</span>
-                         </div>
-                    </div>
-                    <div class="flex-col buttons">
-                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                         <button class="btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites</button>
-                    </div>
-               </li>
-               <li class="flex-row single-search-result">
-                    <div class="flex-row img-info">
-                         <img src="./images/portrait_medium.jpg" alt="">
-                         <div class="hero-info">
-                              <span class="hero-name">Name</span>
-                         </div>
-                    </div>
-                    <div class="flex-col buttons">
-                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                         <button class="btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites</button>
-                    </div>
+                    <div style="display:none;">
+                         <span>${hero.name}</span>
+                         <span>${hero.description}</span>
+                         <span>${hero.comics.available}</span>
+                         <span>${hero.series.available}</span>
+                         <span>${hero.stories.available}</span>
+                         <span>${hero.thumbnail.path+'/portrait_uncanny.' + hero.thumbnail.extension}</span>
+                    </div> -->
                </li>
           </ul>
      </div>
@@ -115,7 +78,7 @@
      <img class="bg-img" src="./images/background-light-img.png" alt="">
      <!-- <img class="bg-right-side-img" src="./images/my-image (2).png" alt=""> -->
      <!-- <img class="bg-left-side-img" src="./images/my-image (2).png" alt=""> -->
-     <script src="./js/index.js"></script>
+     <script src="./js/script.js"></script>
 
 
 </body>
