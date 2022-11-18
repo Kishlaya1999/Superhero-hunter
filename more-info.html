@@ -6,7 +6,7 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="shortcut icon" href="./images/mask.gif" type="image/x-icon">
-     <title>Superhero Hunter</title>
+     <title id="page-title">Superhero Hunter</title>
 
      <!-- Google fonts -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +18,10 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link rel="stylesheet" href="./css/styles.css">
 
-     <!-- Crypto JS -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
-          integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <!-- Custom Stylesheet -->
+     <link rel="stylesheet" href="./css/styles.css">
+     <link rel="stylesheet" href="./css/more-info.css">
 </head>
 
 <body>
@@ -46,9 +44,39 @@
                </a>
           </div>
      </nav>
+     <div class="flex-row info">
+          <section class="flex-col" id="info-container">
+               <!-- <div class="flex-row hero-name">${heroInfo.name}</div>
+               <div class="flex-row hero-img-and-more-info">
+                    <img id="portraitImage" class="hero-img" src="${heroInfo.portraitImage}" alt="">
+                    <img style="display:none;" id="landscapeImage" src="${heroInfo.landscapeImage}" alt="">
+                    <div class="flex-col more-info">
+                         <div class="flex-row id">
+                              <b>ID:</b><span>${heroInfo.id}</span>
+                         </div>
+                         <div class="flex-row comics">
+                              <b>Comics:</b><span>${heroInfo.comics}</span>
+                         </div>
+                         <div class="flex-row series">
+                              <b>Series:</b><span>${heroInfo.series}</span>
+                         </div>
+                         <div class="flex-row stories">
+                              <b>Stories:</b><span>${heroInfo.stories}</span>
+                         </div>
+                    </div>
+               </div>
+               <div class="flex-col hero-discription">
+                    <b>Discription:</b>
+                    <p>${heroInfo.description != "" ? heroInfo.description : "No Description Available"}</p>
+               </div> -->
+          </section>
+     </div>
 
 
-     <script src="./js/more-info.js"></script>
+     <img class="bg-img" src="./images/background-light-img.png" alt="">
+
+
+     <script defer src="./js/more-info.js"></script>
 </body>
 
 </html>
