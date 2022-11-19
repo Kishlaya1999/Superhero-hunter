@@ -1,0 +1,28 @@
+body{
+     overflow-x: hidden;
+}
+
+.favourite-characters{
+     height: 100%;
+     /* padding: 40px 0; */
+}
+
+.cards-container{
+     justify-content: space-evenly;
+     height: 100%;
+     flex-wrap: wrap;
+     overflow: hidden;
+}
+.character-info .btn{ 
+     width: 100%;
+}
+
+.card{
+     height: 484px;
+     width: 250px;
+     margin: 40px 0;
+     text-align: center;
+     border: 1px solid black;
+     border-radius: 10px;
+     gap: 5px;
+}
