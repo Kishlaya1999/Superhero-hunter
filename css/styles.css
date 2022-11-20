@@ -199,6 +199,40 @@ input::placeholder {
      margin: auto;
 }
 
+.fav-toast,.remove-toast{
+     position: absolute;
+     bottom: 100px;
+     font-size: 24px;
+     width: 350px;
+     color: white;
+     letter-spacing: 1px;
+     padding: 10px 20px;
+     z-index: 2;
+     text-align: center;
+     left: 0;
+     right: 0;
+     margin: auto;
+}
+
+.fav-toast[data-visiblity="show"],
+.remove-toast[data-visiblity="show"]{
+     display: block;
+}
+.fav-toast[data-visiblity="hide"],
+.remove-toast[data-visiblity="hide"]{
+     display: none;
+}
+
+.fav-toast{
+     background-color: #20B130;
+     box-shadow: 0px 0px 5px 5px hsl(127, 69%, 70%);
+}
+
+.remove-toast{
+     background-color: #BB2124;
+     box-shadow: 0px 0px 10px 5px hsl(359, 70%, 60%);
+}
+
 
 @media screen and (max-width: 576px) {
      .navbar {

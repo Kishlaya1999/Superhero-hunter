@@ -2,14 +2,14 @@ body{
      overflow-x: hidden;
 }
 
-.favourite-characters{
-     height: 100%;
+/* .favourite-characters{
+     /* height: 100%; */
      /* padding: 40px 0; */
-}
+/* }  */
 
 .cards-container{
      justify-content: space-evenly;
-     height: 100%;
+     /* height: 100%; */
      flex-wrap: wrap;
      overflow: hidden;
 }
@@ -26,3 +26,12 @@ body{
      border-radius: 10px;
      gap: 5px;
 }
+
+.card img{
+     border-radius: 10px 10px 0 0;
+}
+
+.remove-btn{
+     border-radius: 0 0 10px 10px;
+}
+

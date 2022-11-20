@@ -4,7 +4,7 @@ let title = document.getElementById('page-title');
 // console.log(object);
 let heroInfo = JSON.parse(localStorage.getItem("heroInfo"));
 
-// title.innerHTML = heroInfo.name + " | SH";
+title.innerHTML = heroInfo.name + " | SH";
 
 window.addEventListener("load", function () {
 
@@ -123,6 +123,11 @@ function addToFavourites() {
           localStorage.setItem("favouriteCharacters", JSON.stringify(favouritesArray));
 
           this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites';
+     
+          document.querySelector(".fav-toast").setAttribute("data-visiblity","show");
+          setTimeout(function(){
+               document.querySelector(".fav-toast").setAttribute("data-visiblity","hide");
+          },1000);
      } else {
 
           let idOfCharacterToBeRemoveFromFavourites = this.parentElement.children[3].children[3].innerHTML;
@@ -147,6 +152,11 @@ function addToFavourites() {
           localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
 
           this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
+          
+          document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
+          setTimeout(function(){
+               document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
+          },1000);
           // console.log();
      }
 

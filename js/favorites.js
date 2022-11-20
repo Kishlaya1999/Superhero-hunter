@@ -77,6 +77,11 @@ function removeCharacterFromFavourites() {
      localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
 
      this.parentElement.remove();
+
+     document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
+          setTimeout(function(){
+               document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
+          },1000);
 }
 
 

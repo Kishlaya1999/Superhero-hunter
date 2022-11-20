@@ -8,21 +8,25 @@
 // 1ad79003cf7316d9bd72c6eda71d1c93d7e807e909ab871748d83ae2eb5527ffd69e034de
 // md5(hash) = d35377547e551cd64a60657d2517bb7f
 
+//*--------------------------------------------------------- Selecting the element from DOM -------------------------------------------------------
 let searchBar = document.getElementById("search-bar");
 let searchResults = document.getElementById("search-results");
 
+// Adding eventListener to search bar
 searchBar.addEventListener("input", () => searchHeros(searchBar.value));
 
+// function for API call
 async function searchHeros(textSearched) {
 
-     let PUBLIC_KEY = "9ab871748d83ae2eb5527ffd69e034de";
-     let PRIVATE_KEY = "ad79003cf7316d9bd72c6eda71d1c93d7e807e90";
+     // let PUBLIC_KEY = "9ab871748d83ae2eb5527ffd69e034de";
+     // let PRIVATE_KEY = "ad79003cf7316d9bd72c6eda71d1c93d7e807e90";
 
      // let ts = new Date().getTime();
      // let hash = CryptoJS.MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString();
 
      // let data = await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}?ts=1&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=${hash}`).then(res => res.json()).then(data => data.data.results);
      // let heros = data.data.results;
+     
      if (textSearched.length == 0) {
           searchResults.innerHTML = ``;
           return;
@@ -142,6 +146,11 @@ function addToFavourites() {
           localStorage.setItem("favouriteCharacters", JSON.stringify(favouritesArray));
 
           this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites';
+          
+          document.querySelector(".fav-toast").setAttribute("data-visiblity","show");
+          setTimeout(function(){
+               document.querySelector(".fav-toast").setAttribute("data-visiblity","hide");
+          },1000);
      }
      else{
 
@@ -167,6 +176,10 @@ function addToFavourites() {
           localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
 
           this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
+          document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
+          setTimeout(function(){
+               document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
+          },1000);
           // console.log();
      }
 
