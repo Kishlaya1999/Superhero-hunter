@@ -2,6 +2,11 @@ body{
      overflow-x: hidden;
 }
 
+
+#container{
+     /* height: 100vh; */
+}
+
 .cards-container{
      justify-content: space-evenly;
      /* height: 100%; */

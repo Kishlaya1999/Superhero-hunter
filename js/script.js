@@ -8,7 +8,7 @@
 // 1ad79003cf7316d9bd72c6eda71d1c93d7e807e909ab871748d83ae2eb5527ffd69e034de
 // md5(hash) = d35377547e551cd64a60657d2517bb7f
 
-//*--------------------------------------------------------- Selecting the element from DOM -------------------------------------------------------
+//*-------------------------------------- Selecting the element from DOM ----------------------------------------------------
 let searchBar = document.getElementById("search-bar");
 let searchResults = document.getElementById("search-results");
 
@@ -27,37 +27,50 @@ async function searchHeros(textSearched) {
      // let data = await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}?ts=1&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=${hash}`).then(res => res.json()).then(data => data.data.results);
      // let heros = data.data.results;
      
+     // if there is no text written in the search bar then nothing is displayed 
      if (textSearched.length == 0) {
           searchResults.innerHTML = ``;
           return;
      }
 
+     // API call to get the data 
      await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
           .then(res => res.json()) //Converting the data into JSON format
           .then(data => showSearchedResults(data.data.results)) //sending the searched results characters to show in HTML
 }
 
+// Function for displaying the searched results in DOM
+// An array is accepted as argument 
+// SearchedHero is the array of objects which matches the string entered in the searched bar
 function showSearchedResults(searchedHero) {
 
+
+     // IDs of the character which are added in the favourites 
+     // Used for displaying the appropriate button in search results i.e
+     // if the id exist in this array then we display "Remove from favourites" button otherwise we display "Add to favourites button"
+     // favouritesCharacterIDs is a map which contains id of character as key and true as value 
      let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
      if(favouritesCharacterIDs == null){
+          // If we did't got the favouritesCharacterIDs then we iniitalize it with empty map
           favouritesCharacterIDs = new Map();
      }
      else if(favouritesCharacterIDs != null){
+          // If the we got the favouritesCharacterIDs in localStorage then parsing it and converting it to map
           favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
      }
 
      searchResults.innerHTML = ``;
+     // count is used to count the result displayed in DOM
      let count = 1;
+
+     // iterating the searchedHero array using for loop
      for (const key in searchedHero) {
-          // console.log(searchedHero[key]);
-          // html += '<div>' + searchedHero[key].status + '</div>';
-          // console.log(searchedHero[key].name);
+          // if count <= 5 then only we display it in dom other results are discarded
           if (count <= 5) {
-               // console.log(searchedHero[key])
-               // console.log(searchedHero[key].thumbnail.path+'/portrait_medium.' + searchedHero[key].thumbnail.extension)
+               // getting the single hero 
+               // hero is the object that we get from API
                let hero = searchedHero[key];
-               // console.log(hero)
+               // Appending the element into DOM
                searchResults.innerHTML +=
                     `
                <li class="flex-row single-search-result">
@@ -89,9 +102,11 @@ function showSearchedResults(searchedHero) {
           }
           count++;
      }
+     // Adding the appropritate events to the buttons 
      events();
 }
 
+// Function for attacthing eventListener to buttons
 function events() {
      let favouriteButton = document.querySelectorAll(".add-to-fav-btn");
      favouriteButton.forEach((btn) => btn.addEventListener("click", addToFavourites));
@@ -99,13 +114,14 @@ function events() {
      let characterInfo = document.querySelectorAll(".character-info");
      characterInfo.forEach((character) => character.addEventListener("click", addInfoInLocalStorage))
 }
-// favouriteButton.addEventListener("click",addToFavourites)
 
+// Function invoked when "Add to Favourites" button or "Remvove from favourites" button is click appropriate action is taken accoring to the button clicked
 function addToFavourites() {
-     // console.log(this.parentElement.parentElement.children[2]);
 
+     // If add to favourites button is cliked then
      if (this.innerHTML == '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites') {
 
+          // We cretate a new object containg revelent info of hero and push it into favouritesArray
           let heroInfo = {
                name: this.parentElement.parentElement.children[2].children[0].innerHTML,
                description: this.parentElement.parentElement.children[2].children[1].innerHTML,
@@ -118,9 +134,13 @@ function addToFavourites() {
                squareImage: this.parentElement.parentElement.children[2].children[8].innerHTML
           }
 
+          // getting the favourites array which store objects of character which are added to favourites form localStorage 
+          // We get null is no such
           let favouritesArray = localStorage.getItem("favouriteCharacters");
 
+          // If favouritesArray is null (for the first time favourites array is null)
           if (favouritesArray == null) {
+               // favourites array is null so we create a new array
                favouritesArray = [];
           } else {
                favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
@@ -137,7 +157,7 @@ function addToFavourites() {
           }
 
           favouritesCharacterIDs.set(heroInfo.id, true);
-          console.log(favouritesCharacterIDs)
+          // console.log(favouritesCharacterIDs)
 
           favouritesArray.push(heroInfo);
 
@@ -207,6 +227,59 @@ function addInfoInLocalStorage() {
      }
 
      localStorage.setItem("heroInfo", JSON.stringify(heroInfo));
+}
+
+/*-----------------------------------------------------  Theme Changing  -------------------------------------------------  */
+
+// Selection of theme button
+let themeButton = document.getElementById("theme-btn");
+
+themeButton.addEventListener("click",themeChanger);
+
+// IIFE fuction which checks the localStorage and applies the presviously set theme
+(function (){
+     let currentTheme = localStorage.getItem("theme");
+     if(currentTheme == null){
+          root.setAttribute("color-scheme","light");
+          themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+          themeButton.style.backgroundColor="#0D4C92";
+          localStorage.setItem("theme","light");
+          return;
+     }
+
+     switch(currentTheme){
+          case "light":
+               root.setAttribute("color-scheme","light");
+               themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+               themeButton.style.backgroundColor="#0D4C92";
+               break;
+          case "dark":
+               root.setAttribute("color-scheme","dark");
+               themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+               themeButton.style.backgroundColor="#FB2576";
+               themeButton.childNodes[0].style.color = "black";
+               break;
+     }
+})();
+
+// function for handeling theme button changes
+function themeChanger(){
+     let root = document.getElementById("root");
+     // let themeIcon = document.querySelector("#themeButton i");
+     if(root.getAttribute("color-scheme") == "light"){
+          root.setAttribute("color-scheme","dark");
+          themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+          themeButton.style.backgroundColor="#FB2576";
+          themeButton.childNodes[0].style.color = "black";
+          localStorage.setItem("theme","dark");
+     }
+     else if(root.getAttribute("color-scheme") == "dark"){
+          root.setAttribute("color-scheme","light");
+          themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+          themeButton.style.backgroundColor="#0D4C92";
+          themeButton.childNodes[0].style.color = "white";
+          localStorage.setItem("theme","light");
+     }
 }
 
 // let PUBLIC_KEY = "9ab871748d83ae2eb5527ffd69e034de";

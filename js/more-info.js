@@ -171,4 +171,57 @@ function addToFavourites() {
 
 }
 
+/*-----------------------------------------------------  Theme Changing  -------------------------------------------------  */
+
+// Selection of theme button
+let themeButton = document.getElementById("theme-btn");
+
+themeButton.addEventListener("click",themeChanger);
+
+// IIFE fuction which checks the localStorage and applies the presviously set theme
+(function (){
+     let currentTheme = localStorage.getItem("theme");
+     if(currentTheme == null){
+          root.setAttribute("color-scheme","light");
+          themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+          themeButton.style.backgroundColor="#0D4C92";
+          localStorage.setItem("theme","light");
+          return;
+     }
+
+     switch(currentTheme){
+          case "light":
+               root.setAttribute("color-scheme","light");
+               themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+               themeButton.style.backgroundColor="#0D4C92";
+               break;
+          case "dark":
+               root.setAttribute("color-scheme","dark");
+               themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+               themeButton.style.backgroundColor="#FB2576";
+               themeButton.childNodes[0].style.color = "black";
+               break;
+     }
+})();
+
+// function for handeling theme button changes
+function themeChanger(){
+     let root = document.getElementById("root");
+     // let themeIcon = document.querySelector("#themeButton i");
+     if(root.getAttribute("color-scheme") == "light"){
+          root.setAttribute("color-scheme","dark");
+          themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+          themeButton.style.backgroundColor="#FB2576";
+          themeButton.childNodes[0].style.color = "black";
+          localStorage.setItem("theme","dark");
+     }
+     else if(root.getAttribute("color-scheme") == "dark"){
+          root.setAttribute("color-scheme","light");
+          themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+          themeButton.style.backgroundColor="#0D4C92";
+          themeButton.childNodes[0].style.color = "white";
+          localStorage.setItem("theme","light");
+     }
+}
+
 // console.log(document.body.clientWidth)
