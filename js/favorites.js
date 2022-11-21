@@ -1,17 +1,19 @@
+// Selecting the card container from the DOM
 let cardContainer = document.getElementById('container');
 
-
+// Event listener attached to dom which is executed when the page is loaded
 window.addEventListener("load", function () {
+     // Getting the favourites array fom localStorage
      let favourites = localStorage.getItem("favouriteCharacters");
 
+     // if favourites is null the we display nothing and return from there 
      if (favourites == null) {
+          cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>"
           return;
-     } else {
+     } 
+     // if NOT NULL the paring it to convert it to array
+     else {
           favourites = JSON.parse(this.localStorage.getItem("favouriteCharacters"));
-     }
-
-     if(favourites.length == 0){
-          cardContainer.innerHTML = "No Favourites Cahracter found";
      }
 
      cardContainer.innerHTML = "";
@@ -92,9 +94,6 @@ function removeCharacterFromFavourites() {
 
 function addInfoInLocalStorage() {
 
-     // console.log(this)
-     // alert("clicked")
-     // console.log(this.parentElement.parentElement.children);
      let heroInfo = {
           name: this.parentElement.children[7].children[1].innerHTML,
           description: this.parentElement.children[7].children[5].innerHTML,
@@ -106,7 +105,6 @@ function addInfoInLocalStorage() {
           landscapeImage: this.parentElement.children[7].children[6].innerHTML
      }
 
-     // console.log(heroInfo);
      localStorage.setItem("heroInfo", JSON.stringify(heroInfo));
 }
 
@@ -163,4 +161,3 @@ function themeChanger(){
           localStorage.setItem("theme","light");
      }
 }
-

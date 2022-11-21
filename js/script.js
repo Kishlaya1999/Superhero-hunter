@@ -31,7 +31,7 @@ async function searchHeros(textSearched) {
      }
 
      // API call to get the data 
-     await fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
+     await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
           .then(res => res.json()) //Converting the data into JSON format
           .then(data => showSearchedResults(data.data.results)) //sending the searched results characters to show in HTML
 }
@@ -131,8 +131,8 @@ function addToFavourites() {
                squareImage: this.parentElement.parentElement.children[2].children[8].innerHTML
           }
 
-          // getting the favourites array which store objects of character which are added to favourites form localStorage 
-          // We get null is no such
+          // getting the favourites array which stores objects of character  
+          // We get null is no such array is created earlier i.e user is running the website for the first time
           let favouritesArray = localStorage.getItem("favouriteCharacters");
 
           // If favouritesArray is null (for the first time favourites array is null)
@@ -182,48 +182,57 @@ function addToFavourites() {
      }
      // For removing the character form favourites array
      else{
-
-          // 
+          
+          // storing the id of character in a variable 
           let idOfCharacterToBeRemoveFromFavourites = this.parentElement.parentElement.children[2].children[6].innerHTML;
-
+          
+          // getting the favourites array from localStorage for removing the character object which is to be removed
           let favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
+          
+          // getting the favaourites character ids array for deleting the character id from favouritesCharacterIDs also
           let favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
-
+          
+          // will contain the characters which should be present after the deletion of the character to be removed 
           let newFavouritesArray = [];
           // let newFavouritesCharacterIDs = [];
-
+          
+          // deleting the character from map using delete function where id of character acts as key
           favouritesCharacterIDs.delete(`${idOfCharacterToBeRemoveFromFavourites}`);
-
+          
+          // creating the new array which does not include the deleted character
+          // iterating each element of array
           favouritesArray.forEach((favourite) => {
+               // if the id of the character doesn't matches the favourite (i.e a favourite character) then we append it in newFavourites array 
                if(idOfCharacterToBeRemoveFromFavourites != favourite.id){
                     newFavouritesArray.push(favourite);
                }
           });
-
+          
           // console.log(newFavouritesArray)
-
+          
+          // Updating the new array in localStorage
           localStorage.setItem("favouriteCharacters",JSON.stringify(newFavouritesArray));
           localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
-
+          
+          
+          // Convering the "Remove from Favourites" button to "Add to Favourites" 
           this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
+          
+          // Displaying the "Remove from Favourites" toast to DOM
           document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
+          // Deleting the "Remove from Favourites" toast from DOM after 1 seconds
           setTimeout(function(){
                document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
           },1000);
           // console.log();
-     }
-
-
-     // console.log(heroInfo.squareImage);
-
-
-
-
+     }     
 }
 
+// Function which stores the info object of character for which user want to see the info 
 function addInfoInLocalStorage() {
 
-     console.log(this.parentElement.parentElement.parentElement.children[2]);
+     // This function basically stores the data of character in localStorage.
+     // When user clicks on the info button and when the info page is opened that page fetches the heroInfo and display the data  
      let heroInfo = {
           name: this.parentElement.parentElement.parentElement.children[2].children[0].innerHTML,
           description: this.parentElement.parentElement.parentElement.children[2].children[1].innerHTML,
@@ -291,29 +300,3 @@ function themeChanger(){
           localStorage.setItem("theme","light");
      }
 }
-
-// let PUBLIC_KEY = "9ab871748d83ae2eb5527ffd69e034de";
-// let PRIVATE_KEY = "ad79003cf7316d9bd72c6eda71d1c93d7e807e90";
-
-// let ts = new Date().getTime();
-// let hash = CryptoJS.MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString();
-// // console.log(hash);
-
-// // console.log(fetch(`http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
-// // ));
-
-
-// fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=doc&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
-// .then(res => res.json())
-// .then(data => console.log(data.data.results))
-
-// // http://gateway.marvel.com/v1/public/comics
-// // // `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
-// console.log(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=Bat&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=${ts}`);
-// function run(){
-
-//      window.open(`http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`
-//      ,'_blank');
-// }
-// document.addEventListener("DOMContentLoaded",function(){
-// })
