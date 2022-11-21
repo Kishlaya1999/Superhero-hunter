@@ -55,9 +55,12 @@ window.addEventListener("load", function () {
                <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${heroInfo.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" :"<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"}
 
           `
+     // Calling the function so that event is added
      addEvent();
 })
 
+// Changing the character image based on the different screen sizes 
+// landscape image for small screen size and potrait image for bigger screen sizes
 window.addEventListener('resize', function () {
      let portraitImage = document.getElementById('portraitImage');
      let landscapeImage = document.getElementById('landscapeImage');
@@ -72,9 +75,10 @@ window.addEventListener('resize', function () {
      }
 })
 
-function addEvent(){
+// this function would run after content of the page is loaded
+function addEvent() {
      let favouriteButton = document.querySelector('.add-to-fav-btn');
-     favouriteButton.addEventListener("click",addToFavourites);
+     favouriteButton.addEventListener("click", addToFavourites);
 }
 
 
@@ -118,16 +122,18 @@ function addToFavourites() {
 
           favouritesArray.push(heroInfo);
 
-
+          // Converting the map to array and then stringifying it and the saving in local storeage
           localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
           localStorage.setItem("favouriteCharacters", JSON.stringify(favouritesArray));
 
           this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites';
-     
-          document.querySelector(".fav-toast").setAttribute("data-visiblity","show");
-          setTimeout(function(){
-               document.querySelector(".fav-toast").setAttribute("data-visiblity","hide");
-          },1000);
+
+          // Adding the Toast "Added to Favourites" is favourites button is clicked 
+          document.querySelector(".fav-toast").setAttribute("data-visiblity", "show");
+          // Removing the tosat after 1 sec i.e 1000ms using setTimeout
+          setTimeout(function () {
+               document.querySelector(".fav-toast").setAttribute("data-visiblity", "hide");
+          }, 1000);
      } else {
 
           let idOfCharacterToBeRemoveFromFavourites = this.parentElement.children[3].children[3].innerHTML;
@@ -151,12 +157,15 @@ function addToFavourites() {
           localStorage.setItem("favouriteCharacters", JSON.stringify(newFavouritesArray));
           localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
 
+          // Changing the Remove button to Add to favourites button
           this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
-          
-          document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
-          setTimeout(function(){
-               document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
-          },1000);
+
+          // Adding the Toast "Removed from Favourites" is Remove button is clicked 
+          document.querySelector(".remove-toast").setAttribute("data-visiblity", "show");
+          // Removing the tosat after 1 sec i.e 1000ms using setTimeout
+          setTimeout(function () {
+               document.querySelector(".remove-toast").setAttribute("data-visiblity", "hide");
+          }, 1000);
           // console.log();
      }
 

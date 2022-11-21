@@ -5,7 +5,7 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="./images/mask.gif" type="image/x-icon">
+     <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
      <title>Superhero Hunter</title>
 
      <!-- Google fonts -->
@@ -35,12 +35,14 @@
           <!-- Site Icon and Name -->
           <div class="flex-row navbar-brand">
                <img class="logo" src="./images/mask.gif" alt="">
-               <span>Superhero Hunter</span>
+               <a href="./index.html">
+                    <span>Superhero Hunter</span>
+               </a>
           </div>
-          <!-- Theme and Favourites Button -->
+          <!-- Theme Button and Favourites Button -->
           <div class="flex-row favAndTheme-btn">
                <button class="btn theme-btn"><i class="fa-solid fa-moon"></i></button>
-               <a href="./favorites.html">
+               <a class="flex-row link-to-different-page" href="./favorites.html">
                     <button class="btn fav-btn"> <i class="fa-solid fa-heart fav-icon"></i> &nbsp; Favourites</button>
                </a>
           </div>
@@ -48,8 +50,12 @@
 
      <!-- Search Bar and Search Results -->
      <div class="flex-col searchBar-items">
-          <input id="search-bar" type="text" autocomplete="off" placeholder="Search for Superheros">
+          <div class="search-bar-container" class="flex-row">
+               <div class="search-icon-container" style=""><i class="fa-solid fa-magnifying-glass"></i></div>
+               <input id="search-bar" type="text" autocomplete="off" placeholder="Search for Superheros">
+          </div>
           <ul class="flex-col" id="search-results">
+               <!-- Structure of the data that is added using DOM manipulation -->
                <!-- <li class="flex-row single-search-result">
                     <div class="flex-row img-info">
                          <img src="${hero.thumbnail.path+'/portrait_medium.' + hero.thumbnail.extension}" alt="">
@@ -60,9 +66,7 @@
                          </div>
                     </div>
                     <div class="flex-col buttons">
-                         <!-- <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button> -->
-                         <!-- <button class="btn add-to-fav-btn"><i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to
-                              Favourites</button>
+                         <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${hero.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" :"<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"}
                     </div>
                     <div style="display:none;">
                          <span>${hero.name}</span>
@@ -71,22 +75,23 @@
                          <span>${hero.series.available}</span>
                          <span>${hero.stories.available}</span>
                          <span>${hero.thumbnail.path+'/portrait_uncanny.' + hero.thumbnail.extension}</span>
-                    </div> --> 
-               </li>
+                         <span>${hero.id}</span>
+                         <span>${hero.thumbnail.path+'/landscape_incredible.' + hero.thumbnail.extension}</span>
+                         <span>${hero.thumbnail.path+'/standard_fantastic.' + hero.thumbnail.extension}</span>
+                    </div>
+               </li> -->
           </ul>
      </div>
 
-
+     <!-- Toasts for notifying user that character is added or removed from favourites -->
      <span data-visiblity="hide" class="fav-toast">Added to Favourites</span>
      <span data-visiblity="hide" class="remove-toast">Removed from Favourites</span>
 
-
-     <!-- <button onclick="run()"> Website</button> -->
+     <!-- Background image -->
      <img class="bg-img" src="./images/background-light-img.png" alt="">
-     <!-- <img class="bg-right-side-img" src="./images/my-image (2).png" alt=""> -->
-     <!-- <img class="bg-left-side-img" src="./images/my-image (2).png" alt=""> -->
-     <script src="./js/script.js"></script>
 
+     <!-- External Script file -->
+     <script src="./js/script.js"></script>
 
 </body>
 

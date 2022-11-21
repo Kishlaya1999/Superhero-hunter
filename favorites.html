@@ -5,7 +5,7 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="./images/mask.gif" type="image/x-icon">
+     <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
      <title>Superhero Hunter</title>
 
      <!-- Google fonts -->
@@ -31,12 +31,14 @@
           <!-- Site Icon and Name -->
           <div class="flex-row navbar-brand">
                <img class="logo" src="./images/mask.gif" alt="">
-               <span>Superhero Hunter</span>
+               <a href="./index.html">
+                    <span>Superhero Hunter</span>
+               </a>
           </div>
-          <!-- Theme and Favourites Button -->
+          <!-- Theme Button and Favourites Button -->
           <div class="flex-row favAndTheme-btn">
                <button class="btn theme-btn"><i class="fa-solid fa-moon"></i></button>
-               <a href="./index.html">
+               <a class="flex-row link-to-different-page" href="./index.html">
                     <button class="btn fav-btn"> <i class="fa-solid fa-house"></i> &nbsp; Home</button>
                </a>
           </div>
@@ -44,64 +46,40 @@
 
      <div class="favourite-characters">
           <div class="flex-row cards-container" id="container">
+               <!-- Structure of the data that is added using DOM manipulation -->
                <!-- <div class="flex-col card">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/e/90/50fecaf4f101b/standard_fantastic.jpg" alt="">
-                    <span class="name">Hawkeye</span>
-                    <span class="id">Id : 5</span>
-                    <span class="comics">Comics : 10</span>
-                    <span class="series">Series : 14</span>
-                    <span class="stories">Stories : 16</span>
-                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
-               </div>
-               <div class="flex-col card">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/e/90/50fecaf4f101b/standard_fantastic.jpg" alt="">
-                    <span class="name">Hawkeye</span>
-                    <span class="id">Id : 5</span>
-                    <span class="comics">Comics : 10</span>
-                    <span class="series">Series : 14</span>
-                    <span class="stories">Stories : 16</span>
-                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
-               </div>
-               <div class="flex-col card">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/e/90/50fecaf4f101b/standard_fantastic.jpg" alt="">
-                    <span class="name">Hawkeye</span>
-                    <span class="id">Id : 5</span>
-                    <span class="comics">Comics : 10</span>
-                    <span class="series">Series : 14</span>
-                    <span class="stories">Stories : 16</span>
-                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
-               </div>
-               <div class="flex-col card">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/e/90/50fecaf4f101b/standard_fantastic.jpg" alt="">
-                    <span class="name">Hawkeye</span>
-                    <span class="id">Id : 5</span>
-                    <span class="comics">Comics : 10</span>
-                    <span class="series">Series : 14</span>
-                    <span class="stories">Stories : 16</span>
-                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
-               </div>
-               <div class="flex-col card">
-                    <img src="http://i.annihil.us/u/prod/marvel/i/mg/e/90/50fecaf4f101b/standard_fantastic.jpg" alt="">
-                    <span class="name">Hawkeye</span>
-                    <span class="id">Id : 5</span>
-                    <span class="comics">Comics : 10</span>
-                    <span class="series">Series : 14</span>
-                    <span class="stories">Stories : 16</span>
-                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
-                    <button class="btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
+                    <img src="${character.squareImage}" alt="">
+                    <span class="name">${character.name}</span>
+                    <span class="id">Id : ${character.id}</span>
+                    <span class="comics">Comics : ${character.comics}</span>
+                    <span class="series">Series : ${character.series}</span>
+                    <span class="stories">Stories : ${character.stories}</span>
+                    <a class="character-info" href="./more-info.html">
+                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
+                    </a>
+                    <div style="display:none;">
+                         <span>${character.id}</span>
+                         <span>${character.name}</span>
+                         <span>${character.comics}</span>
+                         <span>${character.series}</span>
+                         <span>${character.stories}</span>
+                         <span>${character.description}</span>
+                         <span>${character.landscapeImage}</span>
+                         <span>${character.portraitImage}</span>
+                         <span>${character.squareImage}</span>
+                    </div>
+                    <button class="btn remove-btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
                </div> -->
           </div>
      </div>
 
      <span data-visiblity="hide" class="remove-toast">Removed from Favourites</span>
 
+     <!-- Background image -->
+     <img class="bg-img" src="./images/background-light-img.png" alt="">
 
      <script src="./js/favorites.js"></script>
-     <!-- <script src="./js/more-info.js"></script> -->
+
 </body>
 
 </html>

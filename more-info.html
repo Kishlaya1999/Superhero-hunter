@@ -5,7 +5,7 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="./images/mask.gif" type="image/x-icon">
+     <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
      <title id="page-title">Superhero Hunter</title>
 
      <!-- Google fonts -->
@@ -31,21 +31,26 @@
           <!-- Site Icon and Name -->
           <div class="flex-row navbar-brand">
                <img class="logo" src="./images/mask.gif" alt="">
-               <span>Superhero Hunter</span>
+               <a href="./index.html">
+                    <span>Superhero Hunter</span>
+               </a>
           </div>
-          <!-- Theme and Favourites Button -->
+          <!-- Theme Button and Favourites Button -->
           <div class="flex-row favAndTheme-btn">
                <button class="btn theme-btn"><i class="fa-solid fa-moon"></i></button>
-               <a href="./favorites.html">
+               <a class="flex-row link-to-different-page" href="./favorites.html">
                     <button class="btn fav-btn"> <i class="fa-solid fa-heart fav-icon"></i> &nbsp; Favourites</button>
                </a>
-               <a href="./index.html">
+               <a class="flex-row link-to-different-page" href="./index.html">
                     <button class="btn fav-btn"> <i class="fa-solid fa-house"></i> &nbsp; Home</button>
                </a>
           </div>
      </nav>
+
+     <!-- Info Container -->
      <div class="flex-row info">
           <section class="flex-col" id="info-container">
+               <!-- Sturcture of the data that is added to favourites using DOM manipulation -->
                <!-- <div class="flex-row hero-name">${heroInfo.name}</div>
                <div class="flex-row hero-img-and-more-info">
                     <img id="portraitImage" class="hero-img" src="${heroInfo.portraitImage}" alt="">
@@ -68,16 +73,31 @@
                <div class="flex-col hero-discription">
                     <b>Discription:</b>
                     <p>${heroInfo.description != "" ? heroInfo.description : "No Description Available"}</p>
-               </div> -->
+               </div>
+               <div style="display:none;">
+                    <span>${heroInfo.name}</span>
+                    <span>${heroInfo.portraitImage}</span>
+                    <span>${heroInfo.landscapeImage}</span>
+                    <span>${heroInfo.id}</span>
+                    <span>${heroInfo.comics}</span>
+                    <span>${heroInfo.series}</span>
+                    <span>${heroInfo.stories}</span>
+                    <span>${heroInfo.squareImage}</span>
+                    <span>${heroInfo.description}</span>
+               </div>
+               <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${heroInfo.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" :"<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"} -->
           </section>
      </div>
 
+     
+     <!-- Toasts for notifying user that character is added or removed from favourites -->
      <span data-visiblity="hide" class="fav-toast">Added to Favourites</span>
      <span data-visiblity="hide" class="remove-toast">Removed from Favourites</span>
 
+     <!-- Background Image -->
      <img class="bg-img" src="./images/background-light-img.png" alt="">
 
-
+     <!-- External Script file -->
      <script defer src="./js/more-info.js"></script>
 </body>
 
