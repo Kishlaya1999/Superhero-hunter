@@ -90,15 +90,15 @@ function addToFavourites() {
 
           // We cretate a new object containg revelent info of hero and push it into favouritesArray
           let heroInfo = {
-               name: this.parentElement.parentElement.children[2].children[0].innerHTML,
-               description: this.parentElement.parentElement.children[2].children[1].innerHTML,
-               comics: this.parentElement.parentElement.children[2].children[2].innerHTML,
-               series: this.parentElement.parentElement.children[2].children[3].innerHTML,
-               stories: this.parentElement.parentElement.children[2].children[4].innerHTML,
-               portraitImage: this.parentElement.parentElement.children[2].children[5].innerHTML,
-               id: this.parentElement.parentElement.children[2].children[6].innerHTML,
-               landscapeImage: this.parentElement.parentElement.children[2].children[7].innerHTML,
-               squareImage: this.parentElement.parentElement.children[2].children[8].innerHTML
+               name: this.parentElement.children[3].children[0].innerHTML,
+               description: this.parentElement.children[3].children[8].innerHTML,
+               comics: this.parentElement.children[3].children[4].innerHTML,
+               series: this.parentElement.children[3].children[5].innerHTML,
+               stories: this.parentElement.children[3].children[6].innerHTML,
+               portraitImage: this.parentElement.children[3].children[1].innerHTML,
+               id: this.parentElement.children[3].children[3].innerHTML,
+               landscapeImage: this.parentElement.children[3].children[2].innerHTML,
+               squareImage: this.parentElement.children[3].children[7].innerHTML
           }
 
           // getting the favourites array which stores objects of character  
@@ -154,7 +154,8 @@ function addToFavourites() {
      else{
           
           // storing the id of character in a variable 
-          let idOfCharacterToBeRemoveFromFavourites = this.parentElement.parentElement.children[2].children[6].innerHTML;
+          // console.log(this.parentElement.children[3].children[3].innerHTML)
+          let idOfCharacterToBeRemoveFromFavourites = this.parentElement.children[3].children[3].innerHTML;
           
           // getting the favourites array from localStorage for removing the character object which is to be removed
           let favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
