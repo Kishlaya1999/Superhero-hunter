@@ -11,12 +11,14 @@
      --navbar-light-background-color: #59C1BD;
      --navbar-light-color: #0D4C92;
      --searchBar-light-box-shadow: #0D4C92;
-
+     --text-light-color: #000;
+     
      /* Dark Mode Colors */
      --background-dark-color: #000;
      --navbar-dark-background-color: #150050;
      --navbar-dark-color: #FB2576;
      --searchBar-dark-box-shadow: #fc82b1;
+     --text-dark-color: #fff;
 }
 
 [color-scheme="dark"]{
@@ -24,6 +26,7 @@
      --navbar-background-color: var(--navbar-dark-background-color);
      --navbar-color: var(--navbar-dark-color);
      --searchBar-box-shadow: var(--searchBar-dark-box-shadow);
+     --text-color: var(--text-dark-color);
 }
 
 [color-scheme="light"]{
@@ -31,6 +34,7 @@
      --navbar-background-color: var(--navbar-light-background-color);
      --navbar-color: var(--navbar-light-color);
      --searchBar-box-shadow: var(--searchBar-light-box-shadow);
+     --text-color: var(var(--text-light-color));
 }
 
 

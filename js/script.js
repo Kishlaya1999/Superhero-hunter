@@ -31,7 +31,7 @@ async function searchHeros(textSearched) {
      }
 
      // API call to get the data 
-     await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
+     await fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${textSearched}&apikey=9ab871748d83ae2eb5527ffd69e034de&hash=d35377547e551cd64a60657d2517bb7f?ts=1`)
           .then(res => res.json()) //Converting the data into JSON format
           .then(data => showSearchedResults(data.data.results)) //sending the searched results characters to show in HTML
 }
@@ -99,7 +99,7 @@ function showSearchedResults(searchedHero) {
           }
           count++;
      }
-     // Adding the appropritate events to the buttons 
+     // Adding the appropritate events to the buttons after they are inserted in dom
      events();
 }
 

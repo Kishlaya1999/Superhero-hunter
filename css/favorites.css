@@ -40,6 +40,7 @@ body{
 
 .no-characters{
      font-size: 40px;
+     color: var(--text-color);
 }
 
 /* #delete-all{

@@ -10,10 +10,16 @@ window.addEventListener("load", function () {
      if (favourites == null) {
           cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>"
           return;
-     } 
+     }
      // if NOT NULL the paring it to convert it to array
      else {
           favourites = JSON.parse(this.localStorage.getItem("favouriteCharacters"));
+     }
+
+     // if all the characters are deleted from favourites and not character left for displaying
+     if (favourites.length == 0) {
+          cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
+          return;
      }
 
      cardContainer.innerHTML = "";
@@ -48,9 +54,11 @@ window.addEventListener("load", function () {
           `
 
      })
+     // Adding the appropritate events to the buttons after they are inserted in dom 
      addEvent();
 })
 
+// Function for attacthing eventListener to buttons
 function addEvent() {
      let removeBtn = document.querySelectorAll(".remove-btn");
      removeBtn.forEach((btn) => btn.addEventListener("click", removeCharacterFromFavourites))
@@ -61,39 +69,53 @@ function addEvent() {
 
 
 function removeCharacterFromFavourites() {
-     // console.log(this.parentElement.children[2].innerHTML)
+     
+     // Storing the Id of character in a voriable
      let idOfCharacterToBeDeleted = this.parentElement.children[2].innerHTML.substring(5);
-     // let dummyArray = [];
-     // console.log(idOfCharacterToBeDeleted);
 
+     // getting the favourites array which stores objects of character  
      let favourites = JSON.parse(localStorage.getItem("favouriteCharacters"));
+     // favouritesCharacterIDs is taken from localStorage for deleting the ID of the character which is deleted from favourites
      let favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+     // deleting the characters id from favouritesCharacterId map
      favouritesCharacterIDs.delete(`${idOfCharacterToBeDeleted}`);
 
+
+     // deleting the character form array whose id is matched 
      favourites.forEach(function (favourite, index) {
           if (favourite.id == idOfCharacterToBeDeleted) {
-               console.log(favourite)
+               // console.log(favourite)
                favourites.splice(index, 1);
           }
      });
 
+     // if all the characters are deleted from favourites and not character left for displaying
+     if (favourites.length == 0) {
+          cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
+          return;
+     }
      // console.log(favourites);
 
+     // Updating the new arrays in localStorage
      localStorage.setItem("favouriteCharacters", JSON.stringify(favourites));
      localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
 
+     // Removing the element from DOM
      this.parentElement.remove();
 
-     document.querySelector(".remove-toast").setAttribute("data-visiblity","show");
-          setTimeout(function(){
-               document.querySelector(".remove-toast").setAttribute("data-visiblity","hide");
-          },1000);
+     // displaying the "Removed from favourites" toast in DOM
+     document.querySelector(".remove-toast").setAttribute("data-visiblity", "show");
+     // Removing the "Removed from favourites" toast form DOM
+     setTimeout(function () {
+          document.querySelector(".remove-toast").setAttribute("data-visiblity", "hide");
+     }, 1000);
 }
 
 
-
+// Function which stores the info object of character for which user want to see the info 
 function addInfoInLocalStorage() {
-
+     // This function basically stores the data of character in localStorage.
+     // When user clicks on the info button and when the info page is opened that page fetches the heroInfo and display the data  
      let heroInfo = {
           name: this.parentElement.children[7].children[1].innerHTML,
           description: this.parentElement.children[7].children[5].innerHTML,
@@ -114,50 +136,49 @@ function addInfoInLocalStorage() {
 // Selection of theme button
 let themeButton = document.getElementById("theme-btn");
 
-themeButton.addEventListener("click",themeChanger);
+themeButton.addEventListener("click", themeChanger);
 
 // IIFE fuction which checks the localStorage and applies the presviously set theme
-(function (){
+(function () {
      let currentTheme = localStorage.getItem("theme");
-     if(currentTheme == null){
-          root.setAttribute("color-scheme","light");
+     if (currentTheme == null) {
+          root.setAttribute("color-scheme", "light");
           themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-          themeButton.style.backgroundColor="#0D4C92";
-          localStorage.setItem("theme","light");
+          themeButton.style.backgroundColor = "#0D4C92";
+          localStorage.setItem("theme", "light");
           return;
      }
 
-     switch(currentTheme){
+     switch (currentTheme) {
           case "light":
-               root.setAttribute("color-scheme","light");
+               root.setAttribute("color-scheme", "light");
                themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-               themeButton.style.backgroundColor="#0D4C92";
+               themeButton.style.backgroundColor = "#0D4C92";
                break;
           case "dark":
-               root.setAttribute("color-scheme","dark");
+               root.setAttribute("color-scheme", "dark");
                themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-               themeButton.style.backgroundColor="#FB2576";
+               themeButton.style.backgroundColor = "#FB2576";
                themeButton.childNodes[0].style.color = "black";
                break;
      }
 })();
 
 // function for handeling theme button changes
-function themeChanger(){
+function themeChanger() {
      let root = document.getElementById("root");
      // let themeIcon = document.querySelector("#themeButton i");
-     if(root.getAttribute("color-scheme") == "light"){
-          root.setAttribute("color-scheme","dark");
+     if (root.getAttribute("color-scheme") == "light") {
+          root.setAttribute("color-scheme", "dark");
           themeButton.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-          themeButton.style.backgroundColor="#FB2576";
+          themeButton.style.backgroundColor = "#FB2576";
           themeButton.childNodes[0].style.color = "black";
-          localStorage.setItem("theme","dark");
-     }
-     else if(root.getAttribute("color-scheme") == "dark"){
-          root.setAttribute("color-scheme","light");
+          localStorage.setItem("theme", "dark");
+     } else if (root.getAttribute("color-scheme") == "dark") {
+          root.setAttribute("color-scheme", "light");
           themeButton.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-          themeButton.style.backgroundColor="#0D4C92";
+          themeButton.style.backgroundColor = "#0D4C92";
           themeButton.childNodes[0].style.color = "white";
-          localStorage.setItem("theme","light");
+          localStorage.setItem("theme", "light");
      }
 }
