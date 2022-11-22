@@ -92,7 +92,6 @@ function removeCharacterFromFavourites() {
      // if all the characters are deleted from favourites and not character left for displaying
      if (favourites.length == 0) {
           cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
-          return;
      }
      // console.log(favourites);
 
